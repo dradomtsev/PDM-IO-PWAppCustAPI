@@ -1,0 +1,382 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: PWAopenapi20
+  description: Microsoft Project Web App CSOM API for in OpenAPI 2.0
+  contact:
+    name: Dmytro Radomtsev
+    email: d.radomtsev@gmail.com
+tags:
+  - name: test
+    description: test connection
+host: archimatika.sharepoint.com
+basePath: /sites/pwatest_api/ProjectData/[en-us]
+paths:
+  /:
+    get:
+      tags:
+        - test
+      description: Test connection
+      security:
+        - OAuth2: ['https://archimatika.sharepoint.com/.default']
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Get entities root
+          schema:
+              $ref: '#/definitions/rootResponse200'
+        403:
+          description: Forbidden
+          schema:
+              $ref: '#/definitions/rootResponse403'
+  /Projects:
+    get:
+      tags:
+        - test
+      description: Get all projects
+      security:
+        - OAuth2: ['https://archimatika.sharepoint.com/.default']
+      produces:
+        - application/json
+      responses:
+        200:
+          description: Get all projects
+          schema:
+              $ref: '#/definitions/projectsResponse'
+securityDefinitions:
+  OAuth2:
+      type: oauth2
+      description: PWA auth engine with authorization code
+      flow: accessCode
+      authorizationUrl: https://login.microsoftonline.com/f5c9a7ab-a2f6-4390-9843-a399f97eb894/oauth2/v2.0/authorize
+      tokenUrl: https://login.microsoftonline.com/f5c9a7ab-a2f6-4390-9843-a399f97eb894/oauth2/v2.0/token
+      scopes:
+        https://archimatika.sharepoint.com/.default: Grants access to crud operations
+schemes:
+  - https
+definitions:
+  rootResponse200:
+    type: object
+    properties:
+      value: 
+        type: array
+        items: 
+          type: object
+          properties: 
+            name: 
+              type: string
+            url: 
+              type: string
+  rootResponse403:
+    type: object
+    properties:
+      odata.error: 
+        type: object
+        properties: 
+          code: 
+            type: string
+          message: 
+            type: object
+            properties: 
+              lang: 
+                type: string
+              value: 
+                type: string
+  projectsResponse:
+    type: object
+    properties:
+      value: 
+        type: array
+        items: 
+          type: object
+          properties: 
+            ProjectId: 
+              type: string
+            EnterpriseProjectTypeDescription: 
+              type: string
+            EnterpriseProjectTypeId: 
+              type: string
+            EnterpriseProjectTypeIsDefault: 
+              type: boolean
+            EnterpriseProjectTypeName: 
+              type: string
+            OptimizerCommitDate: 
+              type: string
+              format: nullable
+            OptimizerDecisionAliasLookupTableId: 
+              type: string
+              format: nullable
+            OptimizerDecisionAliasLookupTableValueId: 
+              type: string
+              format: nullable
+            OptimizerDecisionID: 
+              type: string
+              format: nullable
+            OptimizerDecisionName: 
+              type: string
+              format: nullable
+            OptimizerSolutionName: 
+              type: string
+              format: nullable
+            ParentProjectId: 
+              type: string
+              format: nullable
+            PlannerCommitDate: 
+              type: string
+              format: nullable
+            PlannerDecisionAliasLookupTableId: 
+              type: string
+              format: nullable
+            PlannerDecisionAliasLookupTableValueId: 
+              type: string
+              format: nullable
+            PlannerDecisionID: 
+              type: string
+              format: nullable
+            PlannerDecisionName: 
+              type: string
+              format: nullable
+            PlannerEndDate: 
+              type: string
+              format: nullable
+            PlannerSolutionName: 
+              type: string
+              format: nullable
+            PlannerStartDate: 
+              type: string
+              format: nullable
+            ProjectActualCost: 
+              type: string
+            ProjectActualDuration: 
+              type: string
+            ProjectActualFinishDate: 
+              type: string
+              format: nullable
+            ProjectActualOvertimeCost: 
+              type: string
+            ProjectActualOvertimeWork: 
+              type: string
+            ProjectActualRegularCost: 
+              type: string
+            ProjectActualRegularWork: 
+              type: string
+            ProjectActualStartDate: 
+              type: string
+              format: nullable
+            ProjectActualWork: 
+              type: string
+            ProjectACWP: 
+              type: string
+            ProjectAuthorName: 
+              type: string
+            ProjectBCWP: 
+              type: string
+            ProjectBCWS: 
+              type: string
+            ProjectBudgetCost: 
+              type: string
+            ProjectBudgetWork: 
+              type: string
+            ProjectCalculationsAreStale: 
+              type: boolean
+            ProjectCalendarDuration: 
+              type: integer
+              format: int32
+            ProjectCategoryName: 
+              type: string
+              format: nullable
+            ProjectCompanyName: 
+              type: string
+              format: nullable
+            ProjectCost: 
+              type: string
+            ProjectCostVariance: 
+              type: string
+            ProjectCPI: 
+              type: string
+            ProjectCreatedDate: 
+              type: string
+            ProjectCurrency: 
+              type: string
+            ProjectCV: 
+              type: string
+            ProjectCVP: 
+              type: string
+            ProjectDescription: 
+              type: string
+            ProjectDuration: 
+              type: string
+            ProjectDurationVariance: 
+              type: string
+            ProjectEAC: 
+              type: string
+            ProjectEarlyFinish: 
+              type: string
+              format: nullable
+            ProjectEarlyStart: 
+              type: string
+              format: nullable
+            ProjectEarnedValueIsStale: 
+              type: boolean
+            ProjectEnterpriseFeatures: 
+              type: boolean
+            ProjectFinishDate: 
+              type: string
+            ProjectFinishVariance: 
+              type: string
+            ProjectFixedCost: 
+              type: string
+            ProjectIdentifier: 
+              type: string
+            ProjectKeywords: 
+              type: string
+              format: nullable
+            ProjectLateFinish: 
+              type: string
+              format: nullable
+            ProjectLateStart: 
+              type: string
+              format: nullable
+            ProjectLastPublishedDate: 
+              type: string
+            ProjectManagerName: 
+              type: string
+              format: nullable
+            ProjectModifiedDate: 
+              type: string
+            ProjectName: 
+              type: string
+            ProjectOvertimeCost: 
+              type: string
+            ProjectOvertimeWork: 
+              type: string
+            ProjectOwnerId: 
+              type: string
+            ProjectOwnerName: 
+              type: string
+            ProjectPercentCompleted: 
+              type: integer
+              format: int32
+            ProjectPercentWorkCompleted: 
+              type: integer
+              format: int32
+            ProjectRegularCost: 
+              type: string
+            ProjectRegularWork: 
+              type: string
+            ProjectRemainingCost: 
+              type: string
+            ProjectRemainingDuration: 
+              type: string
+            ProjectRemainingOvertimeCost: 
+              type: string
+            ProjectRemainingOvertimeWork: 
+              type: string
+            ProjectRemainingRegularCost: 
+              type: string
+            ProjectRemainingRegularWork: 
+              type: string
+            ProjectRemainingWork: 
+              type: string
+            ProjectResourcePlanWork: 
+              type: string
+            ProjectSPI: 
+              type: string
+            ProjectStartDate: 
+              type: string
+            ProjectStartVariance: 
+              type: string
+            ProjectStatusDate: 
+              type: string
+              format: nullable
+            ProjectSubject: 
+              type: string
+              format: nullable
+            ProjectSV: 
+              type: string
+            ProjectSVP: 
+              type: string
+            ProjectTCPI: 
+              type: string
+            ProjectTimephased: 
+              type: string
+            ProjectTitle: 
+              type: string
+            ProjectType: 
+              type: integer
+              format: int32
+            ProjectVAC: 
+              type: string
+            ProjectWork: 
+              type: string
+            ProjectWorkspaceInternalUrl: 
+              type: string
+              format: nullable
+            ProjectWorkVariance: 
+              type: string
+            ResourcePlanUtilizationDate: 
+              type: string
+              format: nullable
+            ResourcePlanUtilizationType: 
+              type: integer
+              format: int32
+            WorkflowCreatedDate: 
+              type: string
+              format: nullable
+            WorkflowError: 
+              type: string
+              format: nullable
+            WorkflowErrorResponseCode: 
+              type: string
+              format: nullable
+            WorkflowInstanceId: 
+              type: string
+              format: nullable
+            WorkflowOwnerId: 
+              type: string
+              format: nullable
+            WorkflowOwnerName: 
+              type: string
+              format: nullable
+            ProjectDepartments: 
+              type: string
+              format: nullable
+            Полноеназваниеобъекта: 
+              type: string
+              format: nullable
+            ПР: 
+              type: string
+              format: nullable
+            Стадия: 
+              type: string
+              format: nullable
+            Ім_x2018_ягрупи: 
+              type: string
+              format: nullable
+            Підрозділипроекту: 
+              type: string
+              format: nullable
+            Admintype: 
+              type: string
+            Видработ: 
+              type: string
+            Paymenttype: 
+              type: string
+              format: nullable
+            Заказчик: 
+              type: string
+            WBS: 
+              type: string
+            Контраге́нт: 
+              type: string
+              format: nullable
+            Officialsalary: 
+              type: string
+              format: nullable
+            Test_String_field: 
+              type: string
+              format: nullable
+            Lastdateofproject: 
+              type: string
+              format: nullable
